@@ -6,9 +6,31 @@ import addFormats from 'ajv-formats';
 const SRC = 'vendor/pokedex.json';
 const OUT = 'assets/data/mons.json';
 const TYPES_OUT = 'assets/data/types.json';
+const COLORS_OUT = 'assets/data/typeColors.json';
 const SCHEMA = 'schemas/pokedex.schema.json';
 
 const TYPES = ['Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy'];
+
+const TYPE_COLORS = {
+  Normal:   '#A8A77A',
+  Fire:     '#EE8130',
+  Water:    '#6390F0',
+  Electric: '#F7D02C',
+  Grass:    '#7AC74C',
+  Ice:      '#96D9D6',
+  Fighting: '#C22E28',
+  Poison:   '#A33EA1',
+  Ground:   '#E2BF65',
+  Flying:   '#A98FF3',
+  Psychic:  '#F95587',
+  Bug:      '#A6B91A',
+  Rock:     '#B6A136',
+  Ghost:    '#735797',
+  Dragon:   '#6F35FC',
+  Dark:     '#705746',
+  Steel:    '#B7B7CE',
+  Fairy:    '#D685AD',
+};
 
 const GEN_BOUNDS = [151, 251, 386, 493, 649, 721, 809, 905, 1025];
 const generationOf = (id) => {
@@ -68,4 +90,5 @@ if (!validate(out)) {
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, JSON.stringify(out));
 writeFileSync(TYPES_OUT, JSON.stringify(TYPES));
-console.log(`wrote ${OUT} (${out.length} slots, ${out.filter(Boolean).length} mons), validated against ${SCHEMA}`);
+writeFileSync(COLORS_OUT, JSON.stringify(TYPE_COLORS));
+console.log(`wrote ${OUT}, ${TYPES_OUT}, ${COLORS_OUT} (${out.length} slots, ${out.filter(Boolean).length} mons), validated against ${SCHEMA}`);

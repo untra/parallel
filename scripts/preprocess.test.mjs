@@ -36,3 +36,12 @@ test('types.json contains the canonical 18-type vocabulary', () => {
   assert.equal(types.length, 18);
   assert.ok(types.includes('Fairy'));
 });
+
+test('typeColors.json has all 18 types with hex colors', () => {
+  const colors = JSON.parse(readFileSync('assets/data/typeColors.json', 'utf8'));
+  const types = JSON.parse(readFileSync('assets/data/types.json', 'utf8'));
+  assert.equal(Object.keys(colors).length, 18);
+  for (const t of types) {
+    assert.match(colors[t], /^#[0-9A-Fa-f]{6}$/, `bad or missing color for ${t}`);
+  }
+});
