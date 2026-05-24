@@ -1,0 +1,25 @@
+title: "Polyglot — Pokemon Parallel Coordinates"
+description: "An interactive parallel coordinates plot of every Pokemon across ten dimensions, in four languages."
+url: "https://parallel.untra.io"
+baseurl: ""
+
+plugins:
+  - jekyll-polyglot
+
+languages: ["en", "zh-cn", "fr", "ja"]
+default_lang: "en"
+exclude_from_localization: ["assets", "vendor", "scripts", "schemas", "node_modules", ".github"]
+parallel_localization: true
+
+sass:
+  style: compressed
+  sass_dir: assets/css
+
+exclude:
+  - node_modules
+  - vendor
+  - scripts
+  - schemas
+  - package.json
+  - package-lock.json
+  - README.md
