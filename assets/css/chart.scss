@@ -8,13 +8,15 @@ $default: 0.5;
 .chart {
   width: 100%;
   background: #fff;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .chart svg {
   width: 100%;
-  height: 70vh;
+  flex: 1;
   min-height: 480px;
-  max-height: 900px;
   display: block;
 }
 
@@ -32,6 +34,11 @@ $default: 0.5;
   font-size: 11px;
   font-weight: bold;
   fill: $text;
+  cursor: grab;
+}
+
+.axis-label:active {
+  cursor: grabbing;
 }
 
 .line {
@@ -66,4 +73,33 @@ $default: 0.5;
 
 .brush .handle {
   fill: $text;
+}
+
+.demo-chart {
+  width: 100%;
+  max-width: 480px;
+  margin: 1.5rem auto;
+}
+
+.demo-chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.demo-chart .chart-title {
+  font-size: 12px;
+  font-weight: bold;
+  fill: $text;
+  text-anchor: middle;
+}
+
+.demo-chart .axis text {
+  font-size: 10px;
+  fill: $text;
+}
+
+.demo-chart .axis path,
+.demo-chart .axis line {
+  stroke: $axis;
 }

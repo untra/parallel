@@ -4,13 +4,14 @@
 <body>
   <header class="site-header">
     <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-    {% include lang_switcher.html %}
+    <nav class="header-nav">
+      <a href="{{ '/about/' | relative_url }}">{{ site.data.i18n[page.lang].nav_about | default: 'About' }}</a> |
+      <a href="{{ '/comparison/' | relative_url }}">{{ site.data.i18n[page.lang].nav_comparison | default: 'Comparison' }}</a> |
+      {% include lang_switcher.html %}
+    </nav>
   </header>
   <main class="site-main">
     {{ content }}
   </main>
-  <footer class="site-footer">
-    <a href="{{ '/about/' | relative_url }}">{{ site.data.i18n[page.lang].nav_about | default: 'About' }}</a>
-  </footer>
 </body>
 </html>

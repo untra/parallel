@@ -1,18 +1,30 @@
 ---
 layout: page
-title: About
+title: このサイトについて
 permalink: /about/
 lang: ja
 ---
 
-<!-- TODO(translate): replace English placeholder below -->
+## このプロジェクトとは？
 
-parallel coordinate plots are so rad.
+これは、過小評価されていると私が考えるデータビジュアライゼーション、[**平行座標プロット**](https://en.wikipedia.org/wiki/Parallel_coordinates)の力と重要性を実証するためのプロジェクトだ。
 
-They are my favorite data visualization. They are so niche; few people have heard of them or experienced the sensual information overload they impart.
-They are not hard to build; d3 has been around for more than a decade and the rapid composition of lines in a svg plot is a solved problem with javascript.
-Making it interactive and helping human users filter through high volume of data points across many dimensions is what really makes a parallel coordinates plot shine.
-To demonstrate what they are capable of, this project shows a parallel coordinates plot for every pokemon across ten generations of games, over > 1000 data points, viewed across 6 different stat dimensions, including two "type" value ordinals of 18 monster types. pokemon are just data points.
-If a human can view and understand and interact with this kind of graph, then they can also accomplish more with interactive structural data like what AI would typically use.
-AI is going to help us achieve cool advancements in science, but it is all too easy to lie with statistics and bad graphs.
-Bar charts and line graphs are not going to cut it. Scientists need better visual tools to understand data at high concentrations and complexity.
+## 平行座標プロットは本当に最高だ
+
+これは私の一番好きなデータビジュアライゼーションだ。非常にニッチで、知っている人は少ないし、あの圧倒的な情報の洪水を体験したことがある人はもっと少ない。なぜこれが未来のデータビジュアライゼーションなのかを理解している人もまた少ない。
+
+作るのは難しくない。D3は10年以上前から存在し、SVGプロットに線を高速に描画するのはJavaScriptで解決済みの問題だ。平行座標プロットが本当に輝くのは、インタラクティブにして、多次元にわたる大量のデータポイントをユーザーがフィルタリングできるようにしたときだ。将来も人間のアナリストがデータと向き合い続けるなら、そのデータは一般人が消費するものよりもはるかに高い精度と規模が求められるだろう。
+
+平行座標プロットは、多くの次元にわたる外れ値を特定し、膨大なデータ範囲のパターンを素早く見つけるのに役立つ。
+列挙可能なデータ、特に数値だけでなく順序値も識別できる。
+色を使うことで、検査対象のデータのあらゆるフィールドに対応する、より多くの視覚情報をユーザーに伝えることが可能になる。
+
+## データポイントとしてのポケモン
+
+その能力を実証するために、このプロジェクトでは10世代のゲームに登場するすべてのポケモンを平行座標プロットで表示している。1000以上のデータポイントを、6つの異なるステータス次元と、18種類のモンスタータイプからなる2つの「タイプ」序数値で可視化している。ポケモンを選んだのは、それがただのデータポイントだからだ。
+
+## より良いツールが必要だ
+
+人間がこの種のグラフを見て、理解し、操作できるなら、AIが通常使うようなインタラクティブな構造化データでも、もっと多くのことを達成できるはずだ。AIは人間が科学で非常にクールな進歩を達成する助けになるだろう。しかし、統計やひどいグラフで嘘をつくのはあまりにも簡単だ。
+
+もし将来、人間が嘘のない真剣なデータを扱う仕事に就くのなら、棒グラフや折れ線グラフでは不十分だ。**科学者たちは、高密度で複雑なデータを理解するためのより良いビジュアルツールを必要としている。** このプロジェクトは、大規模なデータを理解するための新しいインタラクティブツールを探している人々に平行座標を紹介するために作った。あなたも平行座標プロットの力を実感してくれることを願っている。

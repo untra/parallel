@@ -20,6 +20,13 @@ html, body {
   font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.4;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 a { color: $gb-darkest; }
@@ -43,13 +50,15 @@ a { color: $gb-darkest; }
 
 .site-main {
   padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.site-footer {
-  padding: 0.75rem 1rem;
-  text-align: right;
-  border-top: 1px solid $border;
-  color: $muted-text;
+.header-nav {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
   font-size: 12px;
 }
 
@@ -90,10 +99,63 @@ a { color: $gb-darkest; }
   font-size: 11px;
 }
 
+.mon-profile #mon-name {
+  font-weight: bold;
+}
+
 .mon-profile .mon-hint {
   margin: 0 0 0 auto;
   color: $muted-text;
   font-size: 12px;
+}
+
+.mon-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mon-stats {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  gap: 0.125rem 0.75rem;
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.mon-stats .stat-label {
+  color: $muted-text;
+}
+
+.mon-stats .stat-value {
+  font-weight: bold;
+  text-align: right;
+}
+
+.mon-types {
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  display: flex;
+  gap: 0.75rem;
+  color: $muted-text;
+}
+
+.mon-types .type-value {
+  font-weight: bold;
+}
+
+.mon-filters {
+  margin: 0 0 0 auto;
+  font-size: 11px;
+  color: $muted-text;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  max-width: 50%;
+}
+
+.mon-filters .filter-label {
+  font-weight: bold;
 }
 
 .page {

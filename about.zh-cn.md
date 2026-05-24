@@ -1,18 +1,30 @@
 ---
 layout: page
-title: About
+title: 关于
 permalink: /about/
 lang: zh-cn
 ---
 
-<!-- TODO(translate): replace English placeholder below -->
+## 这个项目是什么？
 
-parallel coordinate plots are so rad.
+这个项目旨在展示[**平行坐标图**](https://en.wikipedia.org/wiki/Parallel_coordinates)的力量和重要性——一种我认为被严重低估的数据可视化方式。
 
-They are my favorite data visualization. They are so niche; few people have heard of them or experienced the sensual information overload they impart.
-They are not hard to build; d3 has been around for more than a decade and the rapid composition of lines in a svg plot is a solved problem with javascript.
-Making it interactive and helping human users filter through high volume of data points across many dimensions is what really makes a parallel coordinates plot shine.
-To demonstrate what they are capable of, this project shows a parallel coordinates plot for every pokemon across ten generations of games, over > 1000 data points, viewed across 6 different stat dimensions, including two "type" value ordinals of 18 monster types. pokemon are just data points.
-If a human can view and understand and interact with this kind of graph, then they can also accomplish more with interactive structural data like what AI would typically use.
-AI is going to help us achieve cool advancements in science, but it is all too easy to lie with statistics and bad graphs.
-Bar charts and line graphs are not going to cut it. Scientists need better visual tools to understand data at high concentrations and complexity.
+## 平行坐标图真的太酷了
+
+这是我最喜欢的数据可视化方式。它非常小众，很少有人听说过，更少有人体验过它带来的那种压倒性的信息冲击。也没有多少人理解为什么它是未来的数据可视化方式。
+
+它并不难构建——D3已经存在了十多年，在SVG图中快速绘制线条是JavaScript早已解决的问题。让平行坐标图真正出色的，是让它变得可交互，帮助用户在多个维度中筛选大量数据点。如果人类分析师在未来仍然需要与数据打交道，那么这些数据的保真度和规模将远超普通人日常接触的水平。
+
+平行坐标图有助于在多个维度中识别异常值，并快速发现大范围数据中的规律。
+它可以识别可枚举的数据，尤其是数值，也包括序数值。
+通过使用颜色，可以向用户传递更多的视觉信息，并且可以对应到数据中任何可检查的字段。
+
+## 宝可梦作为数据点
+
+为了展示它的能力，这个项目展示了横跨十个世代游戏中每一只宝可梦的平行坐标图——超过1000个数据点，分布在6个不同的属性维度上，包括两个由18种怪兽类型组成的"属性"序数值。我选择宝可梦，是因为它们不过是数据点而已。
+
+## 我们需要更好的工具
+
+如果人类能够查看、理解并与这种图表交互，那么他们也能利用AI通常使用的那种交互式结构化数据完成更多的事情。AI将帮助人类在科学上取得非常酷的进步，但用统计数据和糟糕的图表撒谎实在太容易了。
+
+如果人类未来要从事与严肃、真实数据打交道的工作，柱状图和折线图远远不够。**科学家们需要更好的可视化工具来理解高密度、高复杂度的数据。** 我创建这个项目是为了向那些正在寻找新的交互式工具来大规模理解数据的人介绍平行坐标图。希望你也能欣赏到平行坐标图的力量。

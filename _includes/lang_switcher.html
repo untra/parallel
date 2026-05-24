@@ -1,13 +1,12 @@
-{% assign base = page.permalink | default: page.url %}
 <nav class="lang-switcher" aria-label="language">
+  {% assign base = page.permalink | default: page.url %}
   {% for lang in site.languages %}
     {% assign label = site.data.i18n[lang].lang_label | default: lang %}
-    {% if lang == page.lang %}
-      <span class="current">{{ label }}</span>
-    {% elsif lang == site.default_lang %}
-      <a href="{{ base | relative_url }}" hreflang="{{ lang }}">{{ label }}</a>
+    {% capture href %}{{ site.baseurl }}{% if lang != site.default_lang %}/{{ lang }}{% endif %}{{ base }}{% endcapture %}
+    {% if lang == site.active_lang %}
+      <span class="current" aria-current="true" lang="{{ lang }}">{{ label }}</span>
     {% else %}
-      <a href="{{ base | prepend: lang | prepend: '/' | relative_url }}" hreflang="{{ lang }}">{{ label }}</a>
+      <a {% static_href %}href="{{ href }}"{% endstatic_href %} hreflang="{{ lang }}" lang="{{ lang }}">{{ label }}</a>
     {% endif %}
   {% endfor %}
 </nav>

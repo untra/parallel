@@ -1,5 +1,5 @@
-title: "Polyglot — Pokemon Parallel Coordinates"
-description: "An interactive parallel coordinates plot of every Pokemon across ten dimensions, in four languages."
+title: "Interactive Pokemon Parallel Coordinates"
+description: "An interactive parallel coordinates plot of every Pokemon across ten dimensions"
 url: "https://parallel.untra.io"
 baseurl: ""
 

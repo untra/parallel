@@ -7,7 +7,12 @@ layout: default
     <span id="mon-id"></span>
     <span id="mon-name"></span>
   </div>
-  <p class="mon-hint">{{ site.data.i18n[page.lang].hint_select | default: 'Click a line to select a Pokemon.' }}</p>
+  <div id="mon-detail" class="mon-detail" hidden>
+    <div id="mon-stats" class="mon-stats"></div>
+    <div id="mon-types" class="mon-types"></div>
+  </div>
+  <p id="mon-hint" class="mon-hint">{{ site.data.i18n[page.lang].hint_select | default: 'Click a line to select a Pokemon.' }}</p>
+  <div id="mon-filters" class="mon-filters" hidden></div>
 </section>
 <section id="chart" class="chart" data-lang="{{ page.lang }}"></section>
 <script>window.__AXIS_LABELS__ = {{ site.data.i18n[page.lang].axis | jsonify }};</script>

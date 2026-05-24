@@ -1,7 +1,10 @@
 export function renderChart(rootEl, mons, opts = {}) {
   const { axisLabels = {}, types, typeColors = {} } = opts;
   const data = mons.filter(Boolean);
-  const DIMS = ['id', 'hp', 'attack', 'defense', 'spAttack', 'spDefense', 'speed', 'type1', 'type2', 'generation'];
+
+  const dims = ['generation', 'id', 'hp', 'attack', 'defense', 'spAttack', 'spDefense', 'speed', 'type1', 'type2'];
+  const ranges = new Map();
+  let selectedId = null;
 
   const margin = { top: 30, right: 40, bottom: 20, left: 40 };
 
@@ -24,6 +27,57 @@ export function renderChart(rootEl, mons, opts = {}) {
     return best;
   }
 
+  function isFiltered(d) {
+    for (const [dim, range] of ranges) {
+      if (!range) continue;
+      const v = value(d, dim);
+      if (dim === 'type1' || dim === 'type2') {
+        const lo = types.indexOf(range[0]);
+        const hi = types.indexOf(range[1]);
+        const idx = types.indexOf(v);
+        if (idx < Math.min(lo, hi) || idx > Math.max(lo, hi)) return true;
+      } else {
+        const [a, b] = range;
+        const lo = Math.min(a, b);
+        const hi = Math.max(a, b);
+        if (v < lo || v > hi) return true;
+      }
+    }
+    return false;
+  }
+
+  function emitFilterChange(y) {
+    const filters = [];
+    for (const [dim, range] of ranges) {
+      if (!range) continue;
+      const isPoint = dim === 'type1' || dim === 'type2';
+      if (isPoint) {
+        const order = y[dim].domain();
+        const lo = order.indexOf(range[0]);
+        const hi = order.indexOf(range[1]);
+        const minIdx = Math.min(lo, hi);
+        const maxIdx = Math.max(lo, hi);
+        filters.push({
+          dim,
+          label: axisLabels[dim] || dim,
+          kind: 'ordinal',
+          values: order.slice(minIdx, maxIdx + 1),
+        });
+      } else {
+        const [a, b] = range;
+        filters.push({
+          dim,
+          label: axisLabels[dim] || dim,
+          kind: 'numeric',
+          min: Math.min(a, b),
+          max: Math.max(a, b),
+        });
+      }
+    }
+    const matched = filters.length ? data.filter((d) => !isFiltered(d)).length : data.length;
+    rootEl.dispatchEvent(new CustomEvent('filterchange', { detail: { filters, matched, total: data.length } }));
+  }
+
   function render() {
     rootEl.replaceChildren();
 
@@ -32,7 +86,7 @@ export function renderChart(rootEl, mons, opts = {}) {
     const iw = width - margin.left - margin.right;
     const ih = height - margin.top - margin.bottom;
 
-    const x = d3.scalePoint().domain(DIMS).range([0, iw]).padding(0.5);
+    const x = d3.scalePoint().domain(dims).range([0, iw]).padding(0.5);
 
     const y = {};
     const stat = () => d3.scaleLinear().domain([0, 255]).range([ih, 0]);
@@ -47,10 +101,13 @@ export function renderChart(rootEl, mons, opts = {}) {
     y.type1 = d3.scalePoint().domain(types).range([0, ih]).padding(0.5);
     y.type2 = d3.scalePoint().domain(types).range([0, ih]).padding(0.5);
 
+    const dragging = new Map();
+    const position = (dim) => dragging.has(dim) ? dragging.get(dim) : x(dim);
+
     const line = d3
       .line()
       .defined(([, v]) => v != null)
-      .x(([dim]) => x(dim))
+      .x(([dim]) => position(dim))
       .y(([dim, v]) => y[dim](v));
 
     const svgRoot = d3
@@ -59,7 +116,6 @@ export function renderChart(rootEl, mons, opts = {}) {
       .attr('viewBox', `0 0 ${width} ${height}`)
       .attr('preserveAspectRatio', 'none');
 
-    // <defs> with one gradient per unique (type1, type2) pair.
     const pairs = new Map();
     for (const m of data) {
       const key = `${m.type1}-${m.type2}`;
@@ -89,15 +145,19 @@ export function renderChart(rootEl, mons, opts = {}) {
       .attr('class', 'line')
       .attr('data-id', (d) => d.id)
       .attr('stroke', (d) => `url(#grad-${d.type1}-${d.type2})`)
-      .attr('d', (d) => line(DIMS.map((dim) => [dim, value(d, dim)])));
+      .attr('d', (d) => line(dims.map((dim) => [dim, value(d, dim)])));
 
     paths.on('click', (event, d) => {
+      selectedId = d.id;
       rootEl.dispatchEvent(new CustomEvent('select', { detail: d }));
       paths.classed('selected', (p) => p === d);
     });
 
+    if (selectedId != null) {
+      paths.classed('selected', (d) => d.id === selectedId);
+    }
+
     const axisG = svg.append('g').attr('class', 'axes');
-    const ranges = new Map();
 
     let raf = null;
     function scheduleUpdate() {
@@ -109,34 +169,46 @@ export function renderChart(rootEl, mons, opts = {}) {
     }
 
     function applyBrush() {
-      paths.classed('muted', (d) => {
-        for (const [dim, range] of ranges) {
-          if (!range) continue;
-          const v = value(d, dim);
-          if (dim === 'type1' || dim === 'type2') {
-            const order = y[dim].domain();
-            const lo = order.indexOf(range[0]);
-            const hi = order.indexOf(range[1]);
-            const idx = order.indexOf(v);
-            if (idx < Math.min(lo, hi) || idx > Math.max(lo, hi)) return true;
-          } else {
-            const [a, b] = range;
-            const lo = Math.min(a, b);
-            const hi = Math.max(a, b);
-            if (v < lo || v > hi) return true;
-          }
-        }
-        return false;
-      });
+      paths.classed('muted', isFiltered);
     }
 
-    for (const dim of DIMS) {
+    // Drag behavior for axis reordering
+    const drag = d3
+      .drag()
+      .subject((event, dim) => ({ x: x(dim), y: 0 }))
+      .on('start', function (event, dim) {
+        dragging.set(dim, x(dim));
+        d3.select(this.parentNode).raise();
+      })
+      .on('drag', function (event, dim) {
+        dragging.set(dim, Math.max(0, Math.min(iw, event.x)));
+        dims.sort((a, b) => position(a) - position(b));
+        x.domain(dims);
+        axisG.selectAll('.axis').attr('transform', (d) => `translate(${position(d)},0)`);
+        paths.attr('d', (d) => line(dims.map((dm) => [dm, value(d, dm)])));
+      })
+      .on('end', function (event, dim) {
+        dragging.delete(dim);
+        axisG
+          .selectAll('.axis')
+          .transition()
+          .duration(250)
+          .attr('transform', (d) => `translate(${x(d)},0)`);
+        paths
+          .transition()
+          .duration(250)
+          .attr('d', (d) => line(dims.map((dm) => [dm, value(d, dm)])));
+      });
+
+    for (const dim of dims) {
+      const isPoint = dim === 'type1' || dim === 'type2';
+
       const g = axisG
         .append('g')
         .attr('class', `axis axis-${dim}`)
+        .datum(dim)
         .attr('transform', `translate(${x(dim)},0)`);
 
-      const isPoint = dim === 'type1' || dim === 'type2';
       const axisGen = isPoint ? d3.axisLeft(y[dim]) : d3.axisLeft(y[dim]).ticks(6);
       g.call(axisGen);
 
@@ -144,7 +216,8 @@ export function renderChart(rootEl, mons, opts = {}) {
         .attr('class', 'axis-label')
         .attr('y', -10)
         .attr('text-anchor', 'middle')
-        .text(axisLabels[dim] ?? dim);
+        .text(axisLabels[dim] ?? dim)
+        .call(drag);
 
       const brush = d3
         .brushY()
@@ -161,8 +234,30 @@ export function renderChart(rootEl, mons, opts = {}) {
             ranges.set(dim, event.selection.map(y[dim].invert));
           }
           scheduleUpdate();
+          if (event.type === 'end') {
+            emitFilterChange(y);
+          }
         });
-      g.append('g').attr('class', 'brush').call(brush);
+
+      const brushG = g.append('g').attr('class', 'brush').call(brush);
+
+      // Replay saved brush range
+      const savedRange = ranges.get(dim);
+      if (savedRange) {
+        let pixelExtent;
+        if (isPoint) {
+          pixelExtent = [y[dim](savedRange[0]), y[dim](savedRange[1])];
+        } else {
+          pixelExtent = [y[dim](savedRange[0]), y[dim](savedRange[1])];
+        }
+        pixelExtent.sort((a, b) => a - b);
+        brush.move(brushG, pixelExtent);
+      }
+    }
+
+    // Apply brush state if ranges exist from prior render
+    if (ranges.size > 0) {
+      applyBrush();
     }
   }
 
