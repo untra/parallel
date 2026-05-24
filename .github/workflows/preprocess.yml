@@ -1,0 +1,53 @@
+name: Preprocess data
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - 'vendor/pokedex.json'
+      - 'scripts/preprocess.mjs'
+      - 'scripts/preprocess.test.mjs'
+      - 'schemas/pokedex.schema.json'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+    inputs:
+      refresh_upstream:
+        description: 'Re-fetch vendor/pokedex.json from upstream before preprocessing'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: preprocess
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Refresh upstream (optional)
+        if: ${{ github.event.inputs.refresh_upstream == 'true' }}
+        run: curl -fsSL https://raw.githubusercontent.com/Purukitto/pokemon-data.json/master/pokedex.json -o vendor/pokedex.json
+      - run: npm run build:data
+      - run: npm run test:data
+      - name: Commit regenerated artifact
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/data/mons.json assets/data/types.json vendor/pokedex.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "[data] regenerate mons.json from preprocess workflow"
+            git push
+          fi
