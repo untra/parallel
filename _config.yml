@@ -23,3 +23,6 @@ exclude:
   - package.json
   - package-lock.json
   - README.md
+
+# google analytics
+ga_tag: G-C2WWDH60GD
