@@ -36,7 +36,8 @@ $default: 0.5;
 
 .line {
   fill: none;
-  stroke: #888; /* fallback if the per-path gradient stroke fails to resolve */
+  /* stroke comes from the per-path stroke="url(#grad-…)" attribute.
+     Do NOT set stroke here — CSS beats SVG presentation attributes. */
   stroke-opacity: $default;
   stroke-width: 1;
   cursor: pointer;
