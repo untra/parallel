@@ -3,7 +3,7 @@
 {% include head.html %}
 <body>
   <header class="site-header">
-    <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+    <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.data.i18n[page.lang].site_title | default: site.title }}</a></h1>
     <nav class="header-nav">
       <a href="{{ '/about/' | relative_url }}">{{ site.data.i18n[page.lang].nav_about | default: 'About' }}</a> |
       <a href="{{ '/comparison/' | relative_url }}">{{ site.data.i18n[page.lang].nav_comparison | default: 'Comparison' }}</a> |

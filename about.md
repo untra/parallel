@@ -1,30 +1,31 @@
 ---
 layout: page
 title: About
+description: "Why parallel coordinates plots matter for high-dimensional data visualization, demonstrated with Pokemon stats"
 permalink: /about/
 lang: en
 ---
 
 ## what is this project?
 
-This is a project to demonstrate the power and importance of the [**Parallel Coordinates Plot**](https://en.wikipedia.org/wiki/Parallel_coordinates), a data visualization that I think is underused.
+This is an interactive [**parallel coordinates plot**](https://en.wikipedia.org/wiki/Parallel_coordinates) of every Pokemon across ten generations of games. Over 1000 data points are rendered across 10 dimensions simultaneously; six base stats, two type ordinals, Pokedex number, and generation. You can brush, filter, and color the data to explore patterns that no simpler chart could reveal. The project is [open-source](https://github.com/untra/parallel) and built with D3.js on GitHub Pages.
 
-## parallel coordinate plots are so rad
+## why parallel coordinates
 
-They are my favorite data visualization. They are so niche; few people have heard of them or experienced the overwhelming information overload they impart. Nor do people understand why they are the data visualization of the future.
+Parallel coordinates are an underused data visualization. Few people have encountered them, and fewer understand why they matter. Each vertical axis represents a different dimension. Every data point is a line that crosses all axes at once, encoding its value on each dimension as the position where it intersects that axis. There is no aggregation; you see every individual observation.
 
-They are not hard to build; d3 has been around for more than a decade and the rapid composition of lines in a svg plot is a solved problem with javascript. Making it interactive and helping human users filter through the high volume of data points across many dimensions is what really makes a parallel coordinates plot shine. If we are going to have human analysts still interacting with data in the future, that data will need to be at a higher fidelity and size than what a typical civilian would consume.
+What makes the visualization powerful is interactivity. Brushing an axis filters the data to a range. Coloring by a field reveals clusters and outliers. Hovering highlights a single path through all dimensions. A static parallel coordinates plot is overwhelming; an interactive one is a discovery tool.
 
-The parallel coordinates plots help identify outliers across many dimensions, and to quickly identify patterns in vast data ranges.
-It can identify data that is enumerable, especially numbers but also ordinal values.
-Using colors, it becomes possible to impart more visual information to the user, that can scope to any field of the data that could be inspected.
+Parallel coordinates help identify outliers across many dimensions and spot patterns in vast data ranges. They handle enumerable data; numbers and ordinal values alike. Using color, additional visual information can be scoped to any field in the dataset.
 
 ## pokemon as data points
 
-To demonstrate what they are capable of, this project shows a parallel coordinates plot for every pokemon across ten generations of games, over > 1000 data points, viewed across 6 different stat dimensions, including two "type" value ordinals of 18 monster types. I chose pokemon because they are just data points; I could also use sports athletes or processed network logs, but these seemed more fun.
+To demonstrate what parallel coordinates are capable of, this project uses Pokemon as the dataset. Every Pokemon from ten generations of games is plotted across six base stat dimensions (HP, Attack, Defense, Sp. Atk, Sp. Def, Speed) plus two type ordinals of 18 monster types. You can filter to find stat outliers, discover type-stat correlations, and compare generational trends. I chose Pokemon because they are familiar, richly structured, and more fun than network logs.
 
-## we need better tools 
+## we need better tools
 
-If a human can view and understand and interact with this kind of graph, then they can also accomplish more with interactive structural data like what AI would typically use. AI is going to help humans achieve very cool advancements in science, but it is all too easy to lie with statistics and bad graphs.
+Real-world data is almost never one-dimensional. Scientific measurements, network telemetry, patient records, financial instruments; these all live in high-dimensional space. Pie charts, bar charts, and line charts flatten that complexity into summaries that can oversimplify or mislead.
 
-If humans are going to have jobs interacting with serious no-lies data in the future, bar charts and line graphs are not going to cut it. **Scientists need better visual tools to understand data at high concentrations and complexity.** I made this project to introduce the parallel coordinates to those who are looking for a new interactive tool to help them grok the data they need at scale. I hope you too can appreciate the power of the parallel coordinates plot.
+**Analysts and scientists need better visual tools to understand data at high concentrations and complexity.** Parallel coordinates preserve the raw structure and let the human find patterns instead of trusting that whoever made the chart chose the right aggregation. They scale to dimensions and data volumes that no other common chart type can handle.
+
+I made this project to introduce parallel coordinates to those looking for a new interactive tool to help them explore data at scale. The source code is available on [GitHub](https://github.com/untra/parallel); contributions and adaptations are welcome. I hope you too can appreciate the power of the parallel coordinates plot.

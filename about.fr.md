@@ -1,30 +1,31 @@
 ---
 layout: page
 title: À propos
+description: "Projet open-source de visualisation interactive en coordonnées parallèles appliqué aux statistiques Pokémon"
 permalink: /about/
 lang: fr
 ---
 
 ## qu'est-ce que ce projet ?
 
-C'est un projet pour démontrer la puissance et l'importance du [**diagramme en coordonnées parallèles**](https://en.wikipedia.org/wiki/Parallel_coordinates), une visualisation de données que je considère sous-utilisée.
+Ce projet est un [**diagramme en coordonnées parallèles**](https://en.wikipedia.org/wiki/Parallel_coordinates) interactif de chaque Pokémon à travers dix générations de jeux. Plus de 1000 points de données sont rendus simultanément sur 10 dimensions — six statistiques de base, deux ordinaux de type, numéro de Pokédex et génération. Vous pouvez brosser, filtrer et colorier les données pour explorer des motifs qu'aucun graphique plus simple ne pourrait révéler. C'est un projet open-source de DataViz, construit avec D3.js et hébergé sur GitHub Pages. Le code source est disponible sur [GitHub](https://github.com/untra/parallel).
 
-## les coordonnées parallèles, c'est vraiment génial
+## la puissance des coordonnées parallèles
 
-C'est ma visualisation de données préférée. Elles sont tellement de niche ; peu de gens en ont entendu parler ou ont vécu la surcharge d'information écrasante qu'elles procurent. Et encore moins de gens comprennent pourquoi c'est la visualisation de données du futur.
+Les coordonnées parallèles sont une visualisation de données sous-exploitée. Peu de gens les ont rencontrées, et encore moins comprennent pourquoi elles comptent. Chaque axe vertical représente une dimension différente. Chaque point de données est une ligne qui traverse tous les axes à la fois, encodant sa valeur sur chaque dimension par la position où elle croise cet axe. Il n'y a aucune agrégation — vous voyez chaque observation individuelle.
 
-Elles ne sont pas difficiles à construire ; D3 existe depuis plus d'une décennie et la composition rapide de lignes dans un graphique SVG est un problème résolu en JavaScript. Ce qui fait vraiment briller un diagramme en coordonnées parallèles, c'est de le rendre interactif et d'aider les utilisateurs à filtrer un grand volume de points de données à travers de nombreuses dimensions. Si les analystes humains doivent encore interagir avec des données à l'avenir, ces données devront être d'une fidélité et d'une taille bien supérieures à ce qu'un civil ordinaire consommerait.
+Ce qui rend cette DataViz puissante, c'est l'interactivité. Le brossage d'un axe filtre les données sur une plage. La coloration par champ révèle les groupes et les valeurs aberrantes. Le survol met en évidence un chemin unique à travers toutes les dimensions. Un graphique statique est écrasant ; un graphique interactif avec des transitions D3.js fluides et un design responsive devient un véritable outil de découverte.
 
-Les coordonnées parallèles aident à identifier les valeurs aberrantes à travers de nombreuses dimensions, et à repérer rapidement des motifs dans de vastes plages de données.
-Elles peuvent identifier des données énumérables, en particulier des nombres mais aussi des valeurs ordinales.
-En utilisant des couleurs, il devient possible de transmettre davantage d'information visuelle à l'utilisateur, applicable à n'importe quel champ des données qui pourrait être inspecté.
+Les coordonnées parallèles aident à identifier les valeurs aberrantes à travers de nombreuses dimensions et à repérer des motifs dans de vastes plages de données. Elles gèrent les données énumérables — nombres et valeurs ordinales. En utilisant la couleur, l'information visuelle supplémentaire peut être appliquée à n'importe quel champ du jeu de données.
 
 ## les pokémon comme points de données
 
-Pour démontrer ce dont elles sont capables, ce projet présente un diagramme en coordonnées parallèles pour chaque Pokémon à travers dix générations de jeux — plus de 1000 points de données, répartis sur 6 dimensions de statistiques différentes, incluant deux ordinaux de « type » parmi 18 types de monstres. J'ai choisi les Pokémon parce que ce ne sont que des points de données.
+Ce site fonctionne aussi comme un annuaire interactif de plus de 1000 Pokémon, où chaque créature peut être explorée à travers ses statistiques, ses types et sa génération. Chaque Pokémon de dix générations de jeux est tracé sur six dimensions de statistiques de base (PV, Attaque, Défense, Atq. Spé., Déf. Spé., Vitesse) plus deux ordinaux de type parmi 18 types de monstres. Vous pouvez filtrer pour trouver les aberrations statistiques, découvrir les corrélations type-statistique, et comparer les tendances générationnelles. J'ai choisi les Pokémon parce qu'ils sont familiers, richement structurés, et bien plus amusants que des logs réseau.
 
-## nous avons besoin de meilleurs outils
+## pourquoi cet outil existe
 
-Si un humain peut voir, comprendre et interagir avec ce genre de graphique, alors il peut aussi accomplir davantage avec des données structurées interactives, comme celles que l'IA utiliserait typiquement. L'IA va aider les humains à réaliser des avancées vraiment formidables en science, mais il est bien trop facile de mentir avec des statistiques et de mauvais graphiques.
+Les données du monde réel ne sont presque jamais unidimensionnelles. Mesures scientifiques, télémétrie réseau, dossiers médicaux, instruments financiers — tout cela vit dans un espace à haute dimensionnalité. Les diagrammes circulaires, en barres et linéaires aplatissent cette complexité en résumés qui peuvent simplifier à l'excès ou induire en erreur.
 
-Si les humains doivent à l'avenir occuper des emplois où ils interagissent avec des données sérieuses et sans mensonge, les diagrammes en barres et les courbes ne suffiront pas. **Les scientifiques ont besoin de meilleurs outils visuels pour comprendre les données à haute concentration et complexité.** J'ai créé ce projet pour présenter les coordonnées parallèles à ceux qui cherchent un nouvel outil interactif pour les aider à appréhender les données dont ils ont besoin à grande échelle. J'espère que vous aussi pourrez apprécier la puissance du diagramme en coordonnées parallèles.
+**Les analystes et les scientifiques ont besoin de meilleurs outils visuels pour comprendre les données à haute concentration et complexité.** Les coordonnées parallèles préservent la structure brute et permettent à l'humain de trouver des motifs au lieu de faire confiance à celui qui a choisi la bonne agrégation. Elles s'adaptent à des dimensions et des volumes de données qu'aucun autre type de graphique courant ne peut gérer.
+
+J'ai créé ce projet pour contribuer à la communauté DataViz et présenter les coordonnées parallèles à ceux qui cherchent un outil interactif pour explorer leurs données à grande échelle — que ce soit pour la science des données, un portfolio UI/UX, ou un projet open-source. Le code source est disponible sur [GitHub](https://github.com/untra/parallel) — les contributions et adaptations sont les bienvenues.

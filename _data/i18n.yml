@@ -1,5 +1,8 @@
 en:
   lang_label: "English"
+  site_title: "Interactive Pokemon Parallel Coordinates"
+  site_description: "An interactive parallel coordinates plot of every Pokemon across ten dimensions"
+  og_locale: "en_US"
   nav_about: "About"
   nav_comparison: "Comparison"
   hint_select: "Click a line to select a Pokemon."
@@ -23,6 +26,9 @@ en:
     generation: "Generation"
 zh-cn:
   lang_label: "中文"
+  site_title: "宝可梦平行坐标图"
+  site_description: "跨越十个维度的全宝可梦交互式平行坐标可视化图"
+  og_locale: "zh_CN"
   nav_about: "关于"
   nav_comparison: "对比"
   hint_select: "点击一条线来选择一只宝可梦。"
@@ -46,6 +52,9 @@ zh-cn:
     generation: "世代"
 fr:
   lang_label: "Français"
+  site_title: "Coordonnées Parallèles Pokémon"
+  site_description: "Un diagramme interactif en coordonnées parallèles de chaque Pokémon à travers dix dimensions"
+  og_locale: "fr_FR"
   nav_about: "À propos"
   nav_comparison: "Comparaison"
   hint_select: "Cliquez sur une ligne pour sélectionner un Pokémon."
@@ -69,6 +78,9 @@ fr:
     generation: "Génération"
 ja:
   lang_label: "日本語"
+  site_title: "ポケモン平行座標プロット"
+  site_description: "全ポケモンの種族値を10次元で可視化するインタラクティブ平行座標プロット"
+  og_locale: "ja_JP"
   nav_about: "このサイトについて"
   nav_comparison: "比較"
   hint_select: "ラインをクリックしてポケモンを選択してください。"

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Comparison
+description: "How parallel coordinates compare to pie charts, bar charts, and line charts for multi-dimensional data"
 permalink: /comparison/
 lang: en
 ---
@@ -31,9 +32,9 @@ A line chart is a plot chart made continuous. It takes N data points and connect
 
 The parallel coordinates plot breaks through every ceiling described above. It is N dimensions and N data points, simultaneously. Data of arbitrary volume and complexity can be understood and refined.
 
-Each vertical axis represents a different dimension. Every data point is a line that crosses all axes at once, encoding its value on each dimension as the position where it intersects that axis. There is no aggregation - you see every individual data point. On this site, that means over 1000 pokemon rendered across 10 dimensions at the same time.
+Each vertical axis represents a different dimension. Every data point is a line that crosses all axes at once, encoding its value on each dimension as the position where it intersects that axis. There is no aggregation - you see every individual data point. On this site, that means over 1000 Pokemon rendered across 10 dimensions at the same time.
 
-**What keeps it from becoming visual chaos is interactivity.** Brushing an axis filters the data to a range. Coloring by a field reveals clusters and outliers. Hovering highlights a single path through all dimensions. A static parallel coordinates plot is overwhelming; but an interactive one is an insightful tool for discovery.
+**What keeps it from becoming visual chaos is interactivity.** Brushing an axis filters the data to a range. Coloring by a field reveals clusters and outliers. Hovering highlights a single path through all dimensions. For example, you can filter to Pokemon with Speed above 100 and Sp. Atk above 120 to instantly find fast special attackers -- then color by type to see which types dominate that niche. A static parallel coordinates plot is overwhelming; an interactive one is a discovery tool.
 
 The tradeoff is real: parallel coordinates require a user who is willing to interact with it. You cannot glance at one the way you glance at a pie chart. But that is exactly the point - pie charts are for glancing, parallel coordinates are for exploring.
 
@@ -43,9 +44,7 @@ Real-world data is almost never one-dimensional. Scientific measurements, networ
 
 Parallel coordinates preserve the raw structure. They let the human find patterns instead of trusting that whoever made the chart chose the right aggregation. They scale to dimensions and data volumes that no other common chart type can handle.
 
-I can imagine an AI future where the work left for humans is very hard and challenging, and the scientific puzzles left to explore require humans that can explore information at the same speed. I can imagine the parallel coordinates plot will be important to our future.
-
-**If your data has more than three dimensions and more than a hundred rows, you should try a parallel coordinates plot to explore your data.** You may not know what you're missing.
+**If your data has more than three dimensions and more than a hundred rows, you should try a parallel coordinates plot.** You may not know what you are missing. This project is [open-source](https://github.com/untra/parallel) -- explore the code, adapt it to your own data, or contribute.
 
 <script>
 window.__COMPARISON_LABELS__ = {{ site.data.i18n[page.lang].comparison | jsonify }};
