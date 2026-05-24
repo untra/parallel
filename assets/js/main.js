@@ -6,9 +6,10 @@ const lang = chartEl.dataset.lang || 'en';
 Promise.all([
   fetch('/assets/data/mons.json').then((r) => r.json()),
   fetch('/assets/data/types.json').then((r) => r.json()),
-]).then(([mons, types]) => {
+  fetch('/assets/data/typeColors.json').then((r) => r.json()),
+]).then(([mons, types, typeColors]) => {
   const labels = window.__AXIS_LABELS__ ?? {};
-  renderChart(chartEl, mons, { axisLabels: labels, types });
+  renderChart(chartEl, mons, { axisLabels: labels, types, typeColors });
 });
 
 chartEl.addEventListener('select', (e) => {
