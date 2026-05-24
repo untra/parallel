@@ -1,0 +1,63 @@
+---
+---
+$gb-dark:    #306230;
+$gb-darkest: #0f380f;
+
+.chart {
+  width: 100%;
+}
+
+.chart svg {
+  width: 100%;
+  height: 600px;
+  display: block;
+}
+
+.axis text {
+  fill: $gb-darkest;
+  font-size: 9px;
+}
+
+.axis path,
+.axis line {
+  stroke: $gb-darkest;
+}
+
+.axis-label {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.line {
+  fill: none;
+  stroke: $gb-dark;
+  stroke-opacity: 0.35;
+  stroke-width: 1;
+  cursor: pointer;
+}
+
+.line:hover {
+  stroke: $gb-darkest;
+  stroke-opacity: 0.9;
+}
+
+.line.muted {
+  stroke-opacity: 0.04;
+  pointer-events: none;
+}
+
+.line.selected {
+  stroke: $gb-darkest;
+  stroke-opacity: 1;
+  stroke-width: 2;
+}
+
+.brush .selection {
+  fill: $gb-darkest;
+  fill-opacity: 0.15;
+  stroke: $gb-darkest;
+}
+
+.brush .handle {
+  fill: $gb-darkest;
+}

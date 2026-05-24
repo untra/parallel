@@ -1,0 +1,60 @@
+en:
+  lang_label: "English"
+  nav_about: "About"
+  hint_select: "Click a line to select a Pokemon."
+  axis:
+    hp: "HP"
+    attack: "Attack"
+    defense: "Defense"
+    spAttack: "Sp. Atk"
+    spDefense: "Sp. Def"
+    speed: "Speed"
+    type1: "Type 1"
+    type2: "Type 2"
+    id: "Dex #"
+    generation: "Gen"
+zh-cn:
+  lang_label: "中文"
+  nav_about: "About"          # TODO(translate)
+  hint_select: "Click a line to select a Pokemon."  # TODO(translate)
+  axis:                       # TODO(translate)
+    hp: "HP"
+    attack: "Attack"
+    defense: "Defense"
+    spAttack: "Sp. Atk"
+    spDefense: "Sp. Def"
+    speed: "Speed"
+    type1: "Type 1"
+    type2: "Type 2"
+    id: "Dex #"
+    generation: "Gen"
+fr:
+  lang_label: "Français"
+  nav_about: "About"          # TODO(translate)
+  hint_select: "Click a line to select a Pokemon."  # TODO(translate)
+  axis:                       # TODO(translate)
+    hp: "HP"
+    attack: "Attack"
+    defense: "Defense"
+    spAttack: "Sp. Atk"
+    spDefense: "Sp. Def"
+    speed: "Speed"
+    type1: "Type 1"
+    type2: "Type 2"
+    id: "Dex #"
+    generation: "Gen"
+ja:
+  lang_label: "日本語"
+  nav_about: "About"          # TODO(translate)
+  hint_select: "Click a line to select a Pokemon."  # TODO(translate)
+  axis:                       # TODO(translate)
+    hp: "HP"
+    attack: "Attack"
+    defense: "Defense"
+    spAttack: "Sp. Atk"
+    spDefense: "Sp. Def"
+    speed: "Speed"
+    type1: "Type 1"
+    type2: "Type 2"
+    id: "Dex #"
+    generation: "Gen"

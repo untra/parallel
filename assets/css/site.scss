@@ -1,0 +1,115 @@
+---
+---
+$gb-lightest: #9bbc0f;
+$gb-light:    #8bac0f;
+$gb-dark:     #306230;
+$gb-darkest:  #0f380f;
+$gb-case:     #cfcfcf;
+$gb-accent:   #8b0000;
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #222;
+  color: $gb-darkest;
+  font-family: "Press Start 2P", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+}
+
+a { color: $gb-darkest; }
+
+.gb-device {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: $gb-case;
+  border-radius: 12px 12px 64px 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.gb-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 1rem;
+  border-bottom: 4px ridge #888;
+}
+
+.gb-title {
+  margin: 0;
+  font-size: 14px;
+}
+
+.gb-title a { text-decoration: none; }
+
+.gb-screen {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: $gb-lightest;
+  border: 8px solid $gb-darkest;
+  border-radius: 6px;
+  min-height: 600px;
+}
+
+.gb-footer {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.lang-switcher {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.lang-switcher .current {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.mon-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: $gb-light;
+  padding: 0.75rem;
+  border: 4px solid $gb-darkest;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  min-height: 96px;
+}
+
+.mon-profile img {
+  width: 96px;
+  height: 96px;
+  image-rendering: pixelated;
+}
+
+.mon-profile .mon-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mon-profile .mon-hint {
+  margin-left: auto;
+  opacity: 0.7;
+}
+
+.page h1 {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+@media (max-width: 700px) {
+  .gb-device {
+    margin: 0;
+    border-radius: 0;
+    padding: 1rem;
+  }
+  .gb-screen {
+    padding: 0.5rem;
+    min-height: 480px;
+  }
+}

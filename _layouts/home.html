@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<section id="mon-profile" class="mon-profile" aria-live="polite">
+  <img id="mon-sprite" alt="">
+  <div class="mon-meta">
+    <span id="mon-id"></span>
+    <span id="mon-name"></span>
+  </div>
+  <p class="mon-hint">{{ site.data.i18n[page.lang].hint_select | default: 'Click a line to select a Pokemon.' }}</p>
+</section>
+<section id="chart" class="chart" data-lang="{{ page.lang }}"></section>
+<script>window.__AXIS_LABELS__ = {{ site.data.i18n[page.lang].axis | jsonify }};</script>
+<script src="{{ '/assets/js/main.js' | relative_url }}" type="module" defer></script>
