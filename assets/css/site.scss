@@ -4,63 +4,59 @@ $gb-lightest: #9bbc0f;
 $gb-light:    #8bac0f;
 $gb-dark:     #306230;
 $gb-darkest:  #0f380f;
-$gb-case:     #cfcfcf;
 $gb-accent:   #8b0000;
+
+$text:        #222;
+$muted-text:  #666;
+$border:      #ddd;
 
 * { box-sizing: border-box; }
 
 html, body {
   margin: 0;
   padding: 0;
-  background: #222;
-  color: $gb-darkest;
-  font-family: "Press Start 2P", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 12px;
+  background: #fff;
+  color: $text;
+  font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 a { color: $gb-darkest; }
 
-.gb-device {
-  max-width: 960px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: $gb-case;
-  border-radius: 12px 12px 64px 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-}
-
-.gb-header {
+.site-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding-bottom: 1rem;
-  border-bottom: 4px ridge #888;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid $gb-dark;
 }
 
-.gb-title {
+.site-title {
   margin: 0;
   font-size: 14px;
+  font-family: "Press Start 2P", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-.gb-title a { text-decoration: none; }
+.site-title a { text-decoration: none; }
 
-.gb-screen {
-  margin-top: 1.5rem;
-  padding: 1.5rem;
-  background: $gb-lightest;
-  border: 8px solid $gb-darkest;
-  border-radius: 6px;
-  min-height: 600px;
+.site-main {
+  padding: 1rem;
 }
 
-.gb-footer {
-  margin-top: 1rem;
+.site-footer {
+  padding: 0.75rem 1rem;
   text-align: right;
+  border-top: 1px solid $border;
+  color: $muted-text;
+  font-size: 12px;
 }
 
 .lang-switcher {
   display: flex;
   gap: 0.75rem;
+  font-size: 12px;
 }
 
 .lang-switcher .current {
@@ -72,11 +68,11 @@ a { color: $gb-darkest; }
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: $gb-light;
-  padding: 0.75rem;
-  border: 4px solid $gb-darkest;
+  background: #fff;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid $border;
   border-radius: 4px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   min-height: 96px;
 }
 
@@ -90,26 +86,22 @@ a { color: $gb-darkest; }
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  font-family: "Press Start 2P", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
 }
 
 .mon-profile .mon-hint {
-  margin-left: auto;
-  opacity: 0.7;
+  margin: 0 0 0 auto;
+  color: $muted-text;
+  font-size: 12px;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .page h1 {
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 0;
-}
-
-@media (max-width: 700px) {
-  .gb-device {
-    margin: 0;
-    border-radius: 0;
-    padding: 1rem;
-  }
-  .gb-screen {
-    padding: 0.5rem;
-    min-height: 480px;
-  }
 }

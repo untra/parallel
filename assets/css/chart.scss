@@ -1,10 +1,13 @@
 ---
 ---
-$gb-dark:    #306230;
-$gb-darkest: #0f380f;
+$text:    #222;
+$axis:    #888;
+$muted:   0.04;
+$default: 0.5;
 
 .chart {
   width: 100%;
+  background: #fff;
 }
 
 .chart svg {
@@ -16,50 +19,50 @@ $gb-darkest: #0f380f;
 }
 
 .axis text {
-  fill: $gb-darkest;
+  fill: $text;
   font-size: 9px;
 }
 
 .axis path,
 .axis line {
-  stroke: $gb-darkest;
+  stroke: $axis;
 }
 
 .axis-label {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: bold;
+  fill: $text;
 }
 
 .line {
   fill: none;
-  stroke: $gb-dark;
-  stroke-opacity: 0.35;
+  stroke: #888; /* fallback if the per-path gradient stroke fails to resolve */
+  stroke-opacity: $default;
   stroke-width: 1;
   cursor: pointer;
 }
 
 .line:hover {
-  stroke: $gb-darkest;
-  stroke-opacity: 0.9;
+  stroke-opacity: 0.95;
+  stroke-width: 1.5;
 }
 
 .line.muted {
-  stroke-opacity: 0.04;
+  stroke-opacity: $muted;
   pointer-events: none;
 }
 
 .line.selected {
-  stroke: $gb-darkest;
   stroke-opacity: 1;
-  stroke-width: 2;
+  stroke-width: 2.5;
 }
 
 .brush .selection {
-  fill: $gb-darkest;
-  fill-opacity: 0.15;
-  stroke: $gb-darkest;
+  fill: $text;
+  fill-opacity: 0.12;
+  stroke: $text;
 }
 
 .brush .handle {
-  fill: $gb-darkest;
+  fill: $text;
 }
