@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parallel.untra.io/schemas/pokedex.schema.json",
+  "title": "Pokedex",
+  "description": "1-indexed array of preprocessed Pokemon. Index 0 is a null sentinel so mons[id] is a direct lookup.",
+  "type": "array",
+  "minItems": 1,
+  "prefixItems": [{ "type": "null" }],
+  "items": { "$ref": "#/$defs/mon" },
+  "$defs": {
+    "type": {
+      "type": "string",
+      "enum": ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"]
+    },
+    "stat": { "type": "integer", "minimum": 0, "maximum": 999 },
+    "lang": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "zh-cn", "fr", "ja"],
+      "properties": {
+        "en":    { "type": "string", "minLength": 1 },
+        "zh-cn": { "type": "string", "minLength": 1 },
+        "fr":    { "type": "string", "minLength": 1 },
+        "ja":    { "type": "string", "minLength": 1 }
+      }
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sprite"],
+      "properties": {
+        "sprite":    { "type": "string", "format": "uri" },
+        "thumbnail": { "type": "string", "format": "uri" },
+        "hires":     { "type": "string", "format": "uri" }
+      }
+    },
+    "mon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "type1", "type2", "stats", "generation", "image"],
+      "properties": {
+        "id":         { "type": "integer", "minimum": 1 },
+        "name":       { "$ref": "#/$defs/lang" },
+        "type1":      { "$ref": "#/$defs/type" },
+        "type2":      { "$ref": "#/$defs/type" },
+        "stats": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["hp", "attack", "defense", "spAttack", "spDefense", "speed"],
+          "properties": {
+            "hp":        { "$ref": "#/$defs/stat" },
+            "attack":    { "$ref": "#/$defs/stat" },
+            "defense":   { "$ref": "#/$defs/stat" },
+            "spAttack":  { "$ref": "#/$defs/stat" },
+            "spDefense": { "$ref": "#/$defs/stat" },
+            "speed":     { "$ref": "#/$defs/stat" }
+          }
+        },
+        "generation": { "type": "integer", "minimum": 1, "maximum": 9 },
+        "image":      { "$ref": "#/$defs/image" }
+      }
+    }
+  }
+}

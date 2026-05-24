@@ -1,0 +1,13 @@
+{
+  "name": "parallel-pokedex",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:data": "node scripts/preprocess.mjs",
+    "test:data": "node --test scripts/preprocess.test.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}
