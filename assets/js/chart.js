@@ -17,18 +17,14 @@ export function renderChart(rootEl, mons, opts = {}) {
   };
 
   const y = {};
-  const numeric = (key) =>
-    d3
-      .scaleLinear()
-      .domain(d3.extent(data, (d) => d.stats[key]))
-      .nice()
-      .range([ih, 0]);
-  y.hp = numeric('hp');
-  y.attack = numeric('attack');
-  y.defense = numeric('defense');
-  y.spAttack = numeric('spAttack');
-  y.spDefense = numeric('spDefense');
-  y.speed = numeric('speed');
+  // Stats use the canonical in-game [0, 255] range so axes are comparable.
+  const stat = () => d3.scaleLinear().domain([0, 255]).range([ih, 0]);
+  y.hp = stat();
+  y.attack = stat();
+  y.defense = stat();
+  y.spAttack = stat();
+  y.spDefense = stat();
+  y.speed = stat();
   y.id = d3.scaleLinear().domain(d3.extent(data, (d) => d.id)).range([ih, 0]);
   y.generation = d3.scaleLinear().domain([1, 9]).range([ih, 0]);
   y.type1 = d3.scalePoint().domain(types).range([0, ih]).padding(0.5);
